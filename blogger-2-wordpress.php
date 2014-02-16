@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name: Blogger 2 Wordpress
+ * Plugin Name: Blogger 2 WordPress
  * Plugin URI: http://subinsb.com/move-blog-from-blogger-to-wordpress
- * Description: Move your Blogger Blog to Wordpress with Posts Redirection. Example : http://myblog.blogspot.com/2014/02/post-1 to http://wordpressblog.com/post-1 or http://wordpressblog.com/2014/02/post-1. Very easy to configure.
- * Version: 0.1
+ * Description: Move your Blogger Blog to Wordpress with Posts Redirection. Example : myblog.blogspot.com/2014/02/post-1 to wordpressblog.com/post-1. You can also redirect Blogger Pages to your New Wordpress Pages. Easily move from old abc.blogspot.com to new domain abc.com
+ * Version: 0.2
  * Author: Subin Siby
  * Author URI: http://subinsb.com
- * License: GPL2
+ * License: GPLv3
 */
 function b2w_admin_menu() {
- add_submenu_page('plugins.php', __('Blogger 2 Wordpress'), __('Blogger 2 Wordpress'), 'manage_options', 'b2w_admin', 'bToW_options_page');
+ add_submenu_page('plugins.php', __('Blogger 2 WordPress'), __('Blogger 2 WordPress'), 'manage_options', 'b2w_admin', 'bToW_options_page');
  
  if (isset($_GET['page']) && $_GET['page'] == 'blogger-2-wordpress-admin') {
   /*wp_enqueue_script('dashboard');
@@ -32,30 +32,32 @@ function bloggerTowordpressAdminPage(){
  }
   $wpBlogURL=get_site_url();
 ?>
-  <div id="message" class="error"><p>Please keep this plugin <strong>activated</strong> for redirection to work.</p></div>
   <div id="content_block" class="align_left">
    <h2>Instructions</h2>
-   <div id="message" class="error"><p>You should read <a href="http://subinsb.com/move-blog-from-blogger-to-wordpress">this Blog post</a> to see how to migrate your blogger blog to wordpress using this plugin.</p></div>
+   <div id="message" class="error"><p>Please keep this plugin <strong>activated</strong> for redirection to work.</p></div>
+   <div id="message" class="updated"><p><a target="_blank" href="http://sag-3.blogspot.com/2013/04/spam-urls-in-blogger-traffic-source.html">See A Demo</a></p></div>
+   <div id="message" class="update-nag">You should read <a target="_blank" href="http://subinsb.com/move-blog-from-blogger-to-wordpress">this Blog post</a> to see how to migrate your blogger blog to wordpress using this plugin.</div>
    <h2>Setup</h2>
    <h3>Get Template Code</h3>
-   If you have already done this, you don't have to do it again.
-   Type in your Blogger Blog's address :
+   <p>If you have already done this, you don't have to do it again <b>unless you upgraded this plugin</b>.</p>
+   <p>You need to replace your Blogger Template to redirect your visitors.</p>
    <form method="post" action="plugins.php?page=b2w_admin">
     <blockquote>
-     <input name="blogger" type="text" size="35" placeholder="http://yourblog.blogspot.com"/>
+     <input name="blogger" type="submit" size="45" value="Generate Template Code" />
     </blockquote>
-    <input type="submit" value="Start Configuration"/>
    </form>
    <form method="post" action="plugins.php?page=b2w_admin">
     <h3>Pages Redirection</h3>
-    If your Blogger blog have pages that you want to redirect, add them (Example Below) :<br/>
+    If your Blogger blog have pages that you want to redirect, add them as JSON array (Example Below) :<br/>
     <textarea cols="60" rows="10" name="pages"><?echo get_option("b2wps048");?></textarea><br/>
+    <p>DO NOT USE FULL URL. Since Blogger Blogs have multiple domains (com, in, au), <br/>URL of Pages will be different. So only add the URL Path Name.</p>
     <input type="submit" value="Add pages redirection"/>
    </form>
    <h4>Example</h4>
    <textarea cols="60" rows="10" disabled="disabled">{
-"<?echo$wpBlogURL;?>/page" : "blog.blogspot.com/p/page.html", 
-"<?echo$wpBlogURL;?>/page2" : "blog.blogspot.com/p/page2.html"
+"<?echo$wpBlogURL;?>/page" : "/p/page.html", 
+"<?echo$wpBlogURL;?>/page2" : "/p/page2.html",
+"<?echo$wpBlogURL;?>/contact" : "/p/contact.html"
 }</textarea>
   </div>
  </div>
@@ -72,18 +74,18 @@ function bToW_options_page(){
   <p>
    <ol>
     <li>Go to you Blogger Blog <b>Template</b> page.</li>
-    <li>Find the <b>Revert to classic template</b> link and click it.</li>
-    <li>Refresh Page</li>
-    <li>Paste the following code in the <b>Edit Template HTML</b> textarea</li>
+    <li>Apply the <b>Simple Template</b> To Your Blog</li>
+    <li>Click On <b>Edit HTML</b> button.</li>
+    <li>Paste the following code in the textarea</li>
    </ol>
-   <textarea cols="90" rows="15"><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="<$BlogLanguageDirection$>"><head><meta name="google-site-verification" content="W6NTV9M49kD1C3pqZoRLShXFLZqhHEp9iuViXnb81zo" /><title><$BlogPageTitle$> </title> <script type="text/javascript"> <MainorArchivePage>window.location.href="<?echo$wpBlogURL;?>/"</MainOrArchivePage> <Blogger><ItemPage>window.location.href="<?echo$wpBlogURL;?>/?b2w=<$BlogItemPermalinkURL$>"</ItemPage></Blogger></script><MainPage><link rel="canonical" href="<?echo$wpBlogURL;?>/" /></MainPage>  <Blogger><ItemPage><link rel="canonical" href="<?echo$wpBlogURL;?>/?b2w=<$BlogItemPermalinkURL$>" /></ItemPage></Blogger></head><body> <div style="border: #ccc 1px solid; background: #eee; padding: 20px; margin: 80px;"><p>This page has moved to a new address.</p><h1><MainOrArchivePage><a href="<?echo$wpBlogURL;?>/"><$BlogTitle$></a></MainOrArchivePage><Blogger><ItemPage><a href="<?echo$wpBlogURL;?>/?b2w=<$BlogItemPermalinkURL$>"><$BlogItemTitle$></a></ItemPage></Blogger></h1></div></body></html></textarea>
+   <textarea cols="90" rows="15"><?echo'<?xml version="1.0" encoding="UTF-8" ?>';?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html>&amp;lt;!--<head>&amp;lt;style &amp;gt;&amp;lt;!--/*<b:skin><![CDATA[*/]]></b:skin>&amp;lt;!--</head>--&amp;gt;<body><script>var GtParam=window.location.pathname=="/" ? "":"/?b2wURL="+window.location.pathname;window.location="<?echo$wpBlogURL;?>/"+GtParam;</script><p>This page has been moved to a new address. Redirecting....</p>&amp;lt;!-- /*<b:section id='main'></b:section>--&amp;gt;&amp;lt;!--/*</body>--&amp;gt;</html></textarea>
   </p>
 <?
  }
 }
 function StartB2WRedirection() {
  global $_SERVER;
- $b2w = (isset($_GET['b2w'])) ? $_GET['b2w']:false;
+ $b2w = (isset($_GET['b2wURL'])) ? $_GET['b2wURL']:false;
  if(!$b2w && is_404()){
   $b2w=$_SERVER['REQUEST_URI'];
  }
