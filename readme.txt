@@ -4,7 +4,7 @@ Donate link: http://subinsb.com
 Tags: wordpress, migrate, blogger, blog, redirect, import, posts, pages, redirection
 Requires at least: 3.0.1
 Tested up to: 3.8.1
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,7 +36,10 @@ More details : http://subinsb.com/move-blog-from-blogger-to-wordpress
 
 == Frequently Asked Questions ==
 
-No questions has been asked yet. If you have a question, ask using http://subinsb.com/ask comments page with Plugin Name or via WordPress support forum.
+No questions has been asked yet. 
+If you have a question, ask in the comments of
+ http://subinsb.com/ask/blogger-2-wordpress
+or via WordPress support forum.
 
 == Screenshots ==
 
@@ -46,6 +49,12 @@ You can find [screenshots here](http://subinsb.com/move-blog-from-blogger-to-wor
 
 = NOTICE =
 All users who updated this plugin to Version 0.2 should reinstall Template Code.
+
+= 0.3 =
+1) Checks If 404 Pages matches a blogger post you imported
+2) Fixed Redirection WWW bug
+3) Redesigned Options Page
+4) Added Donate Option (Please Donate...)
 
 = 0.2 =
 1) Fixed Pages Redirection bug.
