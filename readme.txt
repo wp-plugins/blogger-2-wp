@@ -21,7 +21,8 @@ Blogger 2 WP works on Wordpress versions from 3.0.1 to the latest WordPress vers
 
 **Donate**
 
-I'm only 14 years old when writing this plugin. I'll rewrite this section when I have a donate page.
+I'm only 14 years old when writing this plugin. Please consider a donation to support me. Please....
+http://subinsb.com/donate
 
 **Support**
 
