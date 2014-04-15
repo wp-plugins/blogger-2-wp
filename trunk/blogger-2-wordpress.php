@@ -3,18 +3,17 @@
  * Plugin Name: Blogger 2 WordPress
  * Plugin URI: http://subinsb.com/move-blog-from-blogger-to-wordpress
  * Description: Move your Blogger Blog to Wordpress with Posts Redirection. Example : myblog.blogspot.com/2014/02/post-1 to wordpressblog.com/post-1. You can also redirect Blogger Pages to your New Wordpress Pages. Easily move from old abc.blogspot.com to new domain abc.com
- * Version: 0.3
+ * Version: 0.4
  * Author: Subin Siby
  * Author URI: http://subinsb.com
  * License: GPLv3
 */
 function b2w_admin_menu() {
  add_submenu_page('plugins.php', __('Blogger 2 WordPress'), __('Blogger 2 WordPress'), 'manage_options', 'b2w_admin', 'bToW_options_page');
- 
- if (isset($_GET['page']) && $_GET['page'] == 'blogger-2-wordpress-admin') {
-  /*wp_enqueue_script('dashboard');
-  wp_enqueue_style('dashboard');*/
- }
+ /*if (isset($_GET['page']) && $_GET['page'] == 'blogger-2-wordpress-admin') {
+  wp_enqueue_script('dashboard');
+  wp_enqueue_style('dashboard');
+ }*/
 }
 add_action('admin_menu', 'b2w_admin_menu');
 function bloggerTowordpressAdminPage(){
@@ -24,11 +23,12 @@ function bloggerTowordpressAdminPage(){
   if($pages!=""){
    if(is_object(json_decode($pages))){
     update_option("b2wps048", $pages);
-    echo '<div id="message" class="updated"><p>Added Pages For Redirection</p></div>';
+    echo '<div id="message" style="height: 50px;" class="updated"><p style="font-size: 19px;">Added Pages For Redirection</p></div>';
    }else{
-    echo '<div id="message" class="error"><p>Not A Valid Data</p></div>';
+    echo '<div id="message" style="height: 50px;" class="error"><p style="font-size: 19px;">Not A Valid Data</p></div>';
    }
   }
+  echo "</div>";
  }
   $wpBlogURL=get_site_url();
 ?>
@@ -145,12 +145,24 @@ function bToW_options_page(){
 function StartB2WRedirection() {
  global $_SERVER;
  global $wp_query;
+ global $wp;
+ global $wpdb;
  $b2w = (isset($_GET['b2wURL'])) ? $_GET['b2wURL']:false;
+ $current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
+ $current_url = parse_url($current_url);
+ $current_url = $current_url['host'].$current_url['path'];
+ $siteURL=get_site_url();
+ $siteURLParts=parse_url($siteURL);
+ $siteURL=$siteURLParts['host'].$siteURLParts['path'];
  if(!$b2w && $wp_query->is_404===true){
-  $b2w=$_SERVER['REQUEST_URI'];
+  $b2w=str_replace($siteURL, "", $current_url);
  }
  if($b2w){
-  global $wpdb;
+  $pgs=get_option("b2wps048");
+  $pgs=json_decode($pgs, true);
+  if(is_array($pgs)){
+   $gtun=array_search($b2w, $pgs);
+  }
   $b2w=str_replace(".html", "", $b2w);
   $sql = "SELECT DISTINCT meta_value FROM {$wpdb->postmeta} where meta_key = 'blogger_blog'";
   $results = $wpdb->get_results($sql);
@@ -163,10 +175,6 @@ function StartB2WRedirection() {
      $b2w = strstr($b2w,'?',true);
     }
    }
-   $pgs=json_decode(get_option("b2wps048"), true);
-   if(is_array($pgs)){
-    $gtun=array_search($b2w,$pgs);
-   }
    $sqlstr = $wpdb->prepare("SELECT wposts.ID, wposts.guid
     FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta
     WHERE wposts.ID = wpostmeta.post_id
@@ -174,14 +182,14 @@ function StartB2WRedirection() {
     AND wpostmeta.meta_value LIKE %s", "%$b2w%"
    );
    $wpurl = $wpdb->get_results($sqlstr, ARRAY_N);
-   if($wpurl){
-    $prvt=get_permalink($wpurl[0][0]);
-    header( 'Location: '.$prvt.' ',true,301) ;
-    exit;
-   }elseif($gtun!=false){
-    header('Location: '.$gtun.' ',true,301);
-    exit;
-   }
+  }
+  if(isset($wpurl) && $wpurl){
+   $prvt=get_permalink($wpurl[0][0]);
+   header( 'Location: '.$prvt.' ',true,301) ;
+   exit;
+  }elseif($gtun!=false){
+   header('Location: '.$gtun.' ',true,301);
+   exit;
   }
  }
 }
