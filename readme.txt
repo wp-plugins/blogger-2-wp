@@ -3,8 +3,8 @@ Contributors: Subin Siby
 Donate link: http://subinsb.com
 Tags: wordpress, migrate, blogger, blog, redirect, import, posts, pages, redirection
 Requires at least: 3.0.1
-Tested up to: 3.8.3
-Stable tag: 0.4
+Tested up to: 3.9
+Stable tag: 0.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,11 @@ You can find [screenshots here](http://subinsb.com/move-blog-from-blogger-to-wor
 
 = NOTICE =
 All users who updated this plugin to Version 0.2 should reinstall Template Code.
+
+= 0.4.5 =
+1) Fixed posts redirection bug
+2) Replaced Pages Redirection JSON format in settings to Input Form
+3) Fixed Options Page Bugs
 
 = 0.4 =
 1) Fixed Bugs

@@ -3,7 +3,7 @@
  * Plugin Name: Blogger 2 WordPress
  * Plugin URI: http://subinsb.com/move-blog-from-blogger-to-wordpress
  * Description: Move your Blogger Blog to Wordpress with Posts Redirection. Example : myblog.blogspot.com/2014/02/post-1 to wordpressblog.com/post-1. You can also redirect Blogger Pages to your New Wordpress Pages. Easily move from old abc.blogspot.com to new domain abc.com
- * Version: 0.4
+ * Version: 0.4.5
  * Author: Subin Siby
  * Author URI: http://subinsb.com
  * License: GPLv3
@@ -17,20 +17,19 @@ function b2w_admin_menu() {
 }
 add_action('admin_menu', 'b2w_admin_menu');
 function bloggerTowordpressAdminPage(){
- echo'<div class="wrap">';
- if(isset($_POST['pages'])){
-  $pages=str_replace('\"', '"', $_POST['pages']);
-  if($pages!=""){
-   if(is_object(json_decode($pages))){
-    update_option("b2wps048", $pages);
-    echo '<div id="message" style="height: 50px;" class="updated"><p style="font-size: 19px;">Added Pages For Redirection</p></div>';
-   }else{
-    echo '<div id="message" style="height: 50px;" class="error"><p style="font-size: 19px;">Not A Valid Data</p></div>';
+ if(isset($_POST['pfrom']) && isset($_POST['pto'])){
+  $pgsj=array();
+  foreach($_POST['pfrom'] as $k=>$fromVal){
+   $toVal=$_POST['pto'][$k];
+   if($toVal!="" && $fromVal!=""){
+    $pgsj[$toVal]=$fromVal;
    }
   }
-  echo "</div>";
+  $pages=json_encode($pgsj);
+  update_option("b2wps048", $pages);
+  echo'<div class="wrap"><div id="message" style="height: 50px;" class="updated"><p style="font-size: 19px;">Added Pages For Redirection</p></div></div>';
  }
-  $wpBlogURL=get_site_url();
+ $wpBlogURL=get_site_url();
 ?>
  <div id="poststuff">
   <div id="post-body" class="metabox-holder columns-2">
@@ -39,7 +38,7 @@ function bloggerTowordpressAdminPage(){
      <div class="inside">
       <h2>Donate</h2>
       <p>I'm 14 and I need donations to create more plugins.</p>
-      <p>Please consider a donation for the improvement of this plugin and for future awesome plugins. (Default <strong>5$</strong>)</p>
+      <p>Please consider a donation for the improvement of this plugin and for future awesome plugins.</p>
        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
         <input type="hidden" name="hosted_button_id" value="ZYQWUZ2B8ZXXA">
@@ -75,26 +74,57 @@ function bloggerTowordpressAdminPage(){
       </div>
      </div>
      <div style="font-size:16px;margin-top:15px;line-height:2em;" class="postbox">
-      <div class="inside">
+      <div class="inside b2wOpt">
        <h3 class="hndle"><span>Pages Redirection</span></h3><br/>
        <form method="post" action="plugins.php?page=b2w_admin">
-        If your Blogger blog have pages that you want to redirect, add them as JSON array (Example Below) :<br/>
-        <textarea cols="60" rows="10" name="pages"><?echo get_option("b2wps048");?></textarea><br/>
-        <p>DO NOT USE FULL URL. Since Blogger Blogs have multiple domains (com, in, au), <br/>URL of Pages will be different. So only add the URL Path Name.</p>
-        <input type="submit" value="Add pages redirection"/>
+        <p>If your Blogger blog have pages that you want to redirect, add them (Example below this) :</p>
+        <div style="margin:10px;">
+         <?
+         $pages=get_option("b2wps048");
+         $pages=json_decode($pages, true);
+         if(is_array($pages) && count($pages)!=0){
+          foreach($pages as $k=>$v){
+           echo "<div class='b2wOptPR'>";
+            echo "<input type='text' name='pfrom[]' placeholder='From' value='$v'/>";
+            echo "<input type='text' name='pto[]' placeholder='To' value='$k'/>";
+            echo "<a href='javascript:void(0);' onclick='jQuery(this).parent().remove();'>Remove</a>";
+           echo "</div>";
+          }
+         }else{
+          echo "<div class='b2wOptPR'>";
+           echo "<input type='text' name='pfrom[]' placeholder='From' value=''/>";
+           echo "<input type='text' name='pto[]' placeholder='To' value=''/>";
+          echo "</div>";
+         }
+         ?>
+         <a href="javascript:void(0);" style="margin:5px;display:block;" onclick="jQuery('.b2wOptPR:last').after('<div id=\'b2wOptPR\'><input type=\'text\' name=\'pfrom[]\' placeholder=\'From\' value=\'\'/><input type=\'text\' name=\'pto[]\' placeholder=\'To\' value=\'\'/><a href=\'javascript:void(0);\' onclick=\'jQuery(this).parent().remove();\'>Remove</a></div>');">Add New Field</a>
+        </div>
+        <p>DO NOT USE FULL URL. Since Blogger Blogs have multiple domains (com, in, au), URL of Pages will be different. So only add the URL Path.</p>
+        <input type="submit" value="Update Pages Redirection"/>
        </form>
        <h4>Example</h4>
-       <textarea cols="60" rows="10" disabled="disabled">{
-"<?echo$wpBlogURL;?>/page" : "/p/page.html", 
-"<?echo$wpBlogURL;?>/page2" : "/p/page2.html",
-"<?echo$wpBlogURL;?>/contact" : "/p/contact.html"
-}</textarea>
+       <?
+       $pages=array(
+        "page" => "/p/page.html",
+        "page2" => "/p/page2.html",
+        "contact" => "/p/contact.html"
+       );
+       foreach($pages as $k=>$v){
+        echo "<div>";
+         echo "<input type='text' disabled='disabled' placeholder='From' value='$v'/>";
+         $toURL=substr($wpBlogURL, 0, -1)=="/" ? $k:"/$k";
+         echo "<input type='text' disabled='disabled' placeholder='To' value='$wpBlogURL$toURL'/>";
+        echo "</div>";
+       }
+       ?>
+       <style>
+       .b2wOpt input[type=text]{min-width:300px;}
+       </style>
       </div>
      </div>
     </div>
    </div>
   </div>
- </div>
 <?
 }
 function bToW_options_page(){
@@ -151,7 +181,7 @@ function StartB2WRedirection() {
  $current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
  $current_url = parse_url($current_url);
  $current_url = $current_url['host'].$current_url['path'];
- $siteURL=get_site_url();
+ $siteURL=get_home_url();
  $siteURLParts=parse_url($siteURL);
  $siteURL=$siteURLParts['host'].$siteURLParts['path'];
  if(!$b2w && $wp_query->is_404===true){
