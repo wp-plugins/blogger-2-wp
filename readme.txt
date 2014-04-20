@@ -53,24 +53,34 @@ All users who updated this plugin to Version 0.2 should reinstall Template Code.
 
 = 0.4.5 =
 1) Fixed posts redirection bug
+
 2) Replaced Pages Redirection JSON format in settings to Input Form
+
 3) Fixed Options Page Bugs
 
 = 0.4 =
 1) Fixed Bugs
+
 2) Fixed wrong display of settings success/error messages
+
 3) Improved Pages redirection
+
 4) Works on Wordpress installations in /dir/disdf directories too
 
 = 0.3 =
 1) Checks If 404 Pages matches a blogger post you imported
+
 2) Fixed Redirection WWW bug
+
 3) Redesigned Options Page
+
 4) Added Donate Option (Please Donate...)
 
 = 0.2 =
 1) Fixed Pages Redirection bug.
+
 2) Improved Easabilty To Use
+
 3) New Template Code
 
 = 0.1 =
