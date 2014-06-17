@@ -7,6 +7,7 @@ Tested up to: 3.9
 Stable tag: 0.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: blogger-2-wp
 
 Set up redirection of posts, pages from Blogger Blog to Wordpress.
 
@@ -15,13 +16,15 @@ Set up redirection of posts, pages from Blogger Blog to Wordpress.
 Set up redirections from your old blogger blog to your new WordPress blog. You can redirect posts, pages and as well as the home page. This plugin will generate a template for your blogger blog that will redirect your old Blogger users to your new WordPress blog.
 This plugin will get the URL the blogger user visited and redirect to the new post. See ( http://subinsb.com/move-blog-from-blogger-to-wordpress ) for more details.
 
+Languages: Also available in Spanish & Serbian languages
+
 **Compatibilty**
 
 Blogger 2 WP works on Wordpress versions from 3.0.1 to the latest WordPress version without any problem.
 
 **Donate**
 
-I'm only 14 years old when writing this plugin. Please consider a donation to support me. Please....
+I was 14 years old when writing this plugin. Please consider a donation to support me. Please....
 http://subinsb.com/donate
 
 **Support**
