@@ -4,7 +4,7 @@
  * Text Domain: blogger-2-wp
  * Plugin URI: http://subinsb.com/move-blog-from-blogger-to-wordpress
  * Description: Move your Blogger Blog to Wordpress with Posts Redirection. Example : myblog.blogspot.com/2014/02/post-1 to wordpressblog.com/post-1. You can also redirect Blogger Pages to your New Wordpress Pages. Easily move from old abc.blogspot.com to new domain abc.com
- * Version: 0.4.5
+ * Version: 0.5.1
  * Author: Subin Siby
  * Author URI: http://subinsb.com
  * License: GPLv3
