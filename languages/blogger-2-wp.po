@@ -1,0 +1,165 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: blogger-2-wp\n"
+"POT-Creation-Date: 2014-06-06 20:12+0530\n"
+"PO-Revision-Date: 2014-06-06 20:15+0530\n"
+"Last-Translator: Subin Siby <mail@subinsb.com>\n"
+"Language-Team: Subin's Blog <subins2000@gmail.com>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: blogger-2-wp.php:13
+msgid "Blogger 2 WordPress"
+msgstr "Blogger 2 WordPress"
+
+#: blogger-2-wp.php:31
+msgid "Added Pages For Redirection"
+msgstr ""
+
+#: blogger-2-wp.php:41 blogger-2-wp.php:145
+msgid "Donate"
+msgstr ""
+
+#: blogger-2-wp.php:42 blogger-2-wp.php:146
+msgid "I'm 14 and I need donations to create more plugins."
+msgstr ""
+
+#: blogger-2-wp.php:43 blogger-2-wp.php:147
+msgid ""
+"Please consider a donation for the improvement of this plugin and for future "
+"awesome plugins."
+msgstr ""
+
+#: blogger-2-wp.php:56
+msgid "Keep In Mind"
+msgstr ""
+
+#: blogger-2-wp.php:58
+msgid "Please keep this plugin"
+msgstr ""
+
+#: blogger-2-wp.php:58
+msgid "activated"
+msgstr ""
+
+#: blogger-2-wp.php:58
+msgid "for redirection to work."
+msgstr ""
+
+#: blogger-2-wp.php:61
+msgid "See A Demo"
+msgstr ""
+
+#: blogger-2-wp.php:63
+msgid "You should read"
+msgstr ""
+
+#: blogger-2-wp.php:63
+msgid "this Blog post"
+msgstr ""
+
+#: blogger-2-wp.php:63
+msgid "to see how to migrate your blogger blog to wordpress using this plugin."
+msgstr ""
+
+#: blogger-2-wp.php:68
+msgid "Get Template Code"
+msgstr ""
+
+#: blogger-2-wp.php:69
+msgid "If you have already done this, you don't have to do it again"
+msgstr ""
+
+#: blogger-2-wp.php:69
+msgid "unless you upgraded this plugin"
+msgstr ""
+
+#: blogger-2-wp.php:70
+msgid "You need to replace your Blogger Template to redirect your visitors."
+msgstr ""
+
+#: blogger-2-wp.php:73
+msgid "Generate Template Code"
+msgstr ""
+
+#: blogger-2-wp.php:80
+msgid "Pages Redirection"
+msgstr ""
+
+#: blogger-2-wp.php:82
+msgid ""
+"If your Blogger blog have pages that you want to redirect, add them (Example "
+"below this) :"
+msgstr ""
+
+#: blogger-2-wp.php:87
+msgid "From"
+msgstr ""
+
+#: blogger-2-wp.php:88
+msgid "To"
+msgstr ""
+
+#: blogger-2-wp.php:104
+msgid "Add New Field"
+msgstr ""
+
+#: blogger-2-wp.php:106
+msgid ""
+"DO NOT USE FULL URL. Since Blogger Blogs have multiple domains (com, in, "
+"au), URL of Pages will be different. So only add the URL Path."
+msgstr ""
+
+#: blogger-2-wp.php:107
+msgid "Update Pages Redirection"
+msgstr ""
+
+#: blogger-2-wp.php:109
+msgid "Example"
+msgstr ""
+
+#: blogger-2-wp.php:160
+msgid "Configure Blogger Blog"
+msgstr ""
+
+#: blogger-2-wp.php:161
+msgid "The Posts of"
+msgstr ""
+
+#: blogger-2-wp.php:161
+msgid "Will Be Moved to the Posts @ "
+msgstr ""
+
+#: blogger-2-wp.php:164
+msgid "Go to you Blogger Blog"
+msgstr ""
+
+#: blogger-2-wp.php:164
+msgid "page"
+msgstr ""
+
+#: blogger-2-wp.php:165
+msgid "Apply the"
+msgstr ""
+
+#: blogger-2-wp.php:165
+msgid "To Your Blog"
+msgstr ""
+
+#: blogger-2-wp.php:166
+msgid "Click On"
+msgstr ""
+
+#: blogger-2-wp.php:166
+msgid "button"
+msgstr ""
+
+#: blogger-2-wp.php:167
+msgid "Paste the following code in the textarea"
+msgstr ""
