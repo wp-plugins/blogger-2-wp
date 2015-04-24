@@ -3,7 +3,7 @@ Contributors: Subin Siby
 Donate link: http://subinsb.com
 Tags: wordpress, migrate, blogger, blog, redirect, import, posts, pages, redirection
 Requires at least: 3.0.1
-Tested up to: 3.9
+Tested up to: 4.2
 Stable tag: 0.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
